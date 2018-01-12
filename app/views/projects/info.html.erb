@@ -1,0 +1,46 @@
+<nav class="navbar navbar-default">
+   <ul class="nav navbar-nav navbar-right">
+      <li><a href="/newtask/1">New Task</a></li>
+     <li><a href="/projects/1/edit">Project Details</a></li>
+        <li><a href="/showproject">Update Project</a></li>
+     
+    </ul>
+  </div>
+</nav>
+<div class="container">
+<br>
+
+
+<font color="blue"><h4>Available Tasks</h4></font>
+<div class="col-md-6">
+<table class="table">
+  <thead>
+    <tr>
+      <th><font color="#337ab7">Name</th></font>
+      <th><font color="#337ab7">Description</th></font>
+      <th><font color="#337ab7">Start Date</th></font>
+      <th><font color="#337ab7">End Date</th></font>
+      <th><font color="#337ab7">Status</th></font>
+
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+ <% @tasks.each do |task| %>
+      <tr>      
+        <td><%= task.name %></td>
+        <td><%= task.description %></td>
+        <td><%= task.startdate %></td>
+        <td><%= task.enddate %></td>
+        <td><%= task.status %></td>
+         <td><%= link_to 'Show', "/projectinfo" %></td>
+         <td><%= link_to 'Update', "/projectinfo" %></td>
+         <td><%= link_to 'delete', "/projectinfo" %></td>  
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+
+</div>

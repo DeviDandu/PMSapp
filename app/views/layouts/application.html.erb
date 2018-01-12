@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PMSapp</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    
+  	<div class="panel-heading"><h3><font color="white">Project Management System</font></h3> </div>
+   
+    <%= yield %>
+    <div class="panel-footer">© Copyright 2017 Project Management Services Pvt Ltd. - All Rights reserved</div>
+  </body>
+</html>

@@ -1,0 +1,42 @@
+<nav class="navbar navbar-default">
+   <ul class="nav navbar-nav">
+      <li><a href="projects/new">New Project</a></li>        
+    </ul>
+  </div>
+</nav>
+<div class="container">
+<br>
+
+
+<font color="blue"><h4>Available Projects</h4></font>
+<div class="col-md-7">
+<table class="table">
+  <thead>
+    <tr>
+      <th><font color="#337ab7">Name</th></font>
+      <th><font color="#337ab7">Code</th></font>
+      <th><font color="#337ab7">Start Date</th></font>
+      <th><font color="#337ab7">End Date</th></font>
+       <th><font color="#337ab7">Status</th></font>
+
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+ <% @projects.each do |project| %>
+      <tr>      
+        <td><%= project.name %></td>
+        <td><%= project.code %></td>
+        <td><%= project.startdate %></td>
+        <td><%= project.enddate %></td>
+        <td><%= project.status %></td>
+         <td><%= project.id %></td>
+        <td><%= link_to 'Info', "/projectinfo/#{:project_id}" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+
+</div>
