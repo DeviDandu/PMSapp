@@ -1,0 +1,48 @@
+
+
+<nav class="navbar navbar-default">
+   <ul class="nav navbar-nav">
+      <li><a href="/tasks/new/<%= @project.id %>">New Task</a></li> 
+      <% if current_user %>
+      <li><a href="/users/sign_out" data-method="delete" rel="nofollow">LogOut</a></li> 
+    <% end %>       
+    </ul>
+  </div>
+</nav>
+<div class="container">
+<br>
+
+<font color="red"><h3>Welcome <%= current_user.name %></h3></font><br />
+<font color="red"><h4>Current Project: <%= @project.name %></h4></font><br />
+<font color="blue"><h4>Available Tasks</h4></font>
+<div class="col-md-8">
+<table class="table">
+  <thead>
+    <tr>
+      <th><font color="#337ab7">Name</th></font>
+      <th><font color="#337ab7">Description</th></font>
+      <th><font color="#337ab7">Start Date</th></font>
+      <th><font color="#337ab7">End Date</th></font>
+       <th><font color="#337ab7">Status</th></font>
+
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+ <% @tasks.each do |task| %>
+      <tr>      
+        <td><%= task.name %></td>
+        <td><%= task.description %></td>
+        <td><%= task.startdate %></td>
+        <td><%= task.enddate %></td>
+        <td><%= task.status %></td>
+        <td><%= link_to "Edit", "/edittask/#{task.id}", class: "btn btn-info btn-xs" %></td>
+         <td><%= link_to "Delete", "/deletetask/#{task.id}", class: "btn btn-info btn-xs" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+
+</div>

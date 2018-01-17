@@ -9,7 +9,7 @@
 
   <div class="field">
     <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    <%= f.text_field :name, autofocus: true %>
   </div>
 
   <div class="field">
@@ -32,11 +32,7 @@
 
   <div class="field">
     <%= f.label :select_organisation %><br />    
-    <select class="selectpicker show-tick" data-width="100px" data-header="Select Organisation">
-      <option>Mustard</option>
-      <option>Ketchup</option>
-      <option>Relish</option>
-    </select>
+  <%= f.select :organisation, Organisation.all.collect {|org| [org.name]}, {prompt: 'Select Organisation'} %>
   </div><br />
 
   <div class="actions">

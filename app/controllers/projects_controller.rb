@@ -3,6 +3,11 @@ class ProjectsController < ApplicationController
 
   # GET /projects
   # GET /projects.json
+
+   def home
+    @projects=current_user.projects
+  end
+  
   def info
     @project=Project.find(params[:project_id])
     puts 'id is in #{params[:project_id]}'
@@ -16,17 +21,26 @@ class ProjectsController < ApplicationController
 
   # GET /projects/new
   def new
-    @project = Project.new
+    @user=User.find(params[:user_id])
+    puts "id is #{@user.id}"
+    @project=@user.projects.new(params[:project])
   end
 
   # GET /projects/1/edit
   def edit
+
+    @project=Project.find(params[:id])
   end
 
   # POST /projects
   # POST /projects.json
   def create
-    @project = Project.new(project_params)
+    puts "id is params[:user_id]"
+    @user=User.find(params[:user_id])
+
+    @project=@user.projects.new(project_params)
+    @project.save
+   
 
     respond_to do |format|
       if @project.save
@@ -41,7 +55,9 @@ class ProjectsController < ApplicationController
 
   # PATCH/PUT /projects/1
   # PATCH/PUT /projects/1.json
-  def update
+  def updateproject
+    @project=Project.find(params[:id])
+    @project.update(project_params)
     respond_to do |format|
       if @project.update(project_params)
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
@@ -56,6 +72,7 @@ class ProjectsController < ApplicationController
   # DELETE /projects/1
   # DELETE /projects/1.json
   def destroy
+    @project=Project.find(params[:id])
     @project.destroy
     respond_to do |format|
       format.html { redirect_to projects_url, notice: 'Project was successfully destroyed.' }

@@ -3,8 +3,9 @@ class TasksController < ApplicationController
 
   # GET /tasks
   # GET /tasks.json
-  def index
-    @tasks = Task.all
+  def home
+    @project=Project.find(params[:project_id])
+    @tasks = @project.tasks
   end
 
   # GET /tasks/1
@@ -14,18 +15,23 @@ class TasksController < ApplicationController
 
   # GET /tasks/new
   def new
-    @task = Task.new
+    @project=Project.find(params[:project_id])
+    puts "projwect id is #{@project.id}"
+    @task = Task.new(params[:task])
   end
 
   # GET /tasks/1/edit
   def edit
+   
+    @task=Task.find(params[:id])
   end
 
   # POST /tasks
   # POST /tasks.json
-  def create
-    @task = Task.new(task_params)
-
+  def createtask
+    @project=Project.find(params[:project_id])
+    @task = @project.tasks.new(task_params)
+    @task.save
     respond_to do |format|
       if @task.save
         format.html { redirect_to @task, notice: 'Task was successfully created.' }
@@ -39,7 +45,9 @@ class TasksController < ApplicationController
 
   # PATCH/PUT /tasks/1
   # PATCH/PUT /tasks/1.json
-  def update
+  def updatetask
+    @task=Task.find(params[:id])
+    @task.update(task_params)
     respond_to do |format|
       if @task.update(task_params)
         format.html { redirect_to @task, notice: 'Task was successfully updated.' }
@@ -55,10 +63,7 @@ class TasksController < ApplicationController
   # DELETE /tasks/1.json
   def destroy
     @task.destroy
-    respond_to do |format|
-      format.html { redirect_to tasks_url, notice: 'Task was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to root_path
   end
 
   private

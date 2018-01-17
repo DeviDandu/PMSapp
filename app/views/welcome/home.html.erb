@@ -1,9 +1,13 @@
 <nav class="navbar navbar-default">
    <ul class="nav navbar-nav navbar-right">
       <li><a href="/admin">Admin Panel</a></li>
-     <li><a href="/users/sign_in">User Panel</a></li>
-    </ul>
-  </div>
+     <% if current_user %>
+		<li><a href="/usershome">Users Panel</a></li>
+	<% else %>
+	    <li><a href="/users/sign_in">Users Panel</a></li>
+	<% end %>
+	    </ul>
+	  </div>
 </nav>
 <div class="container">
 <br>
