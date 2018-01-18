@@ -5,6 +5,7 @@ class TasksController < ApplicationController
   # GET /tasks.json
   def home
     @project=Project.find(params[:project_id])
+    @attachments=@project.attachments
     @tasks = @project.tasks
   end
 

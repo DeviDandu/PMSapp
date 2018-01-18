@@ -3,7 +3,7 @@
  <h3><font color="blue">New Project</font></h3><br>
   <div class="row">
 <div class="col-lg-6"> 
-<%= form_with(model: @project, local: true) do |form| %>
+<%= form_with(model: @project, local: true,:html => { :multipart => true }) do |form| %>
   <% if @project.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
@@ -43,6 +43,11 @@
     <%= form.text_field :status, id: :project_status %>
   </div>
 
+   <div class="field">
+      <%= form.fields_for :attachments do |attachment_fields| %>
+      <%= attachment_fields.file_field :file %>
+      <% end %>
+   </div>
   <div class="actions">
     <%= form.submit %>
   </div>

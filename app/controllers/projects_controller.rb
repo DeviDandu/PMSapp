@@ -24,12 +24,13 @@ class ProjectsController < ApplicationController
     @user=User.find(params[:user_id])
     puts "id is #{@user.id}"
     @project=@user.projects.new(params[:project])
+    3.times { @project.attachments.build }
   end
 
   # GET /projects/1/edit
   def edit
-
     @project=Project.find(params[:id])
+    3.times { @project.attachments.build }
   end
 
   # POST /projects
@@ -88,6 +89,6 @@ class ProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:name, :code, :startdate, :enddate, :status)
+      params.require(:project).permit(:name, :code, :startdate, :enddate, :status, attachments_attributes: [:file])
     end
 end
