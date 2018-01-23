@@ -1,37 +1,33 @@
 
 <div class="container">
- <h3><font color="blue">Sign Up</font></h3><br>
+  <br />
+ <h3><font color="#569AAB">SignUp</font></h3><br>
   <div class="row">
 <div class="col-lg-6"> 
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true %>
+  <div class="form-group">
+    <%= f.text_field :name, autofocus: true,class: 'form-control input-sm' %>
   </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <div class="form-group">
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" ,class: 'form-control input-sm'%>
   </div>
 
-  <div class="field">
-    <%= f.label :password %>
+  <div class="form-group">
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+    <%= f.password_field :password, autocomplete: "off",class: 'form-control input-sm' %>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  <div class="form-group">
+    <%= f.password_field :password_confirmation, autocomplete: "off",class: 'form-control input-sm' %>
   </div>
 
-  <div class="field">
-    <%= f.label :select_organisation %><br />    
+  <div class="form-group">   
   <%= f.select :organisation, Organisation.all.collect {|org| [org.name]}, {prompt: 'Select Organisation'} %>
   </div><br />
 
@@ -42,5 +38,3 @@
 </div>
 </div>
 <div>
-
-<%= render "users/shared/links" %>

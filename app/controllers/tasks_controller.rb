@@ -5,13 +5,15 @@ class TasksController < ApplicationController
   # GET /tasks.json
   def home
     @project=Project.find(params[:project_id])
+    puts "project id is #{@project.id}"
     @attachments=@project.attachments
     @tasks = @project.tasks
   end
 
   # GET /tasks/1
   # GET /tasks/1.json
-  def show
+  def index
+    @tasks=Task.all
   end
 
   # GET /tasks/new
@@ -35,7 +37,7 @@ class TasksController < ApplicationController
     @task.save
     respond_to do |format|
       if @task.save
-        format.html { redirect_to @task, notice: 'Task was successfully created.' }
+        format.html { redirect_to "/projectdetails/#{@project.id}", notice: 'Task was successfully created.' }
         format.json { render :show, status: :created, location: @task }
       else
         format.html { render :new }
@@ -47,11 +49,12 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/1
   # PATCH/PUT /tasks/1.json
   def updatetask
+    @project=Project.find(params[:project_id])
     @task=Task.find(params[:id])
     @task.update(task_params)
     respond_to do |format|
       if @task.update(task_params)
-        format.html { redirect_to @task, notice: 'Task was successfully updated.' }
+        format.html { redirect_to "/projectdetails/#{@project.id}", notice: 'Task was successfully updated.' }
         format.json { render :show, status: :ok, location: @task }
       else
         format.html { render :edit }
@@ -63,9 +66,13 @@ class TasksController < ApplicationController
   # DELETE /tasks/1
   # DELETE /tasks/1.json
   def destroy
+    @project=Project.find(params[:project_id])
     @task.destroy
-    redirect_to root_path
-  end
+    respond_to do |format|
+      format.html { redirect_to "/projectdetails/#{@project.id}", notice: 'Task was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+    end
 
   private
     # Use callbacks to share common setup or constraints between actions.

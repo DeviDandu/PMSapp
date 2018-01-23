@@ -1,32 +1,44 @@
 Rails.application.routes.draw do
 
-  get 'attachments/destroy'
+
+  devise_for :admins
+# resources :sessions
+#   get 'adminlogin' => 'sessions#new'
+#   get 'adminlogut' => 'sessions#destroy'
+
+
+  root'welcome#home'
 
   resources :organisations
   
-  devise_for :users
+ devise_for :users
+ 
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+ 
 
+  get 'admins/sign_in' => 'admins#login'
 
-	root'welcome#home'
-	get 'usershome' => 'projects#home'
+	get 'usershome' => 'projects#home', as: :user_root
 	
   	
     get 'projects/new/:user_id' => 'projects#new'
     post 'createproject/:user_id' => 'projects#create'
     get 'editproject/:id' => 'projects#edit'
     patch 'updateproject/:id' => 'projects#updateproject'
+    get 'projectslist' => 'projects#index'
   	resources :projects
     get 'projectdetails/:project_id' => 'tasks#home'
 
      resources :tasks
     get 'tasks/new/:project_id' => 'tasks#new'
      post 'createtask/:project_id' => 'tasks#createtask'
-     get 'edittask/:id' => 'tasks#edit'
-      patch 'updatetask/:id' => 'tasks#updatetask'
-    get 'deletetask/:id' => 'tasks#destroy'
+     get 'edittask/:project_id/:id' => 'tasks#edit'
+      patch 'updatetask/:project_id/:id' => 'tasks#updatetask'
+    get 'deletetask/:project_id/:id' => 'tasks#destroy'
+    get 'taskslist' => 'tasks#index'
 
-    get 'deletefile/:id' => 'attachments#destroy'
+    get 'deletefile/:project_id/:id' => 'attachments#destroy'
     get 'attachment/new/:project_id' => 'attachments#new'
    post 'createattachment' => 'attachments#createattachment'
    

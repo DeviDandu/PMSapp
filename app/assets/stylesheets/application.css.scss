@@ -13,15 +13,45 @@
  *= require_tree .
  *= require_self
  */
+
  @import "bootstrap-sprockets";
 @import "bootstrap";
+
 .panel-footer {
    position: fixed;
    left: 0;
    bottom: 0;
    width: 100%;
    color: white;
-   background-color: #569AAB;
+   background-color: #2F4F4F;
    text-align: center;
 }
-.panel-heading {background-color: #569AAB}
+.panel {
+background-color: #2F4F4F;
+   padding-top: 00px;
+    padding-right: 10px;
+    padding-bottom: 00px;
+    padding-left: 10px;
+}
+
+body {
+   background: image-url('') no-repeat;
+   background-size: cover;
+   height: 1000px;
+}
+
+#al{
+   color: white;
+}
+
+#notice{
+  text-align: center;
+  color: red;
+
+}
+
+    .form-control {
+      display: inline-block;
+      width: auto; // Prevent labels from stacking above inputs in `.form-group`
+      vertical-align: middle;
+    }

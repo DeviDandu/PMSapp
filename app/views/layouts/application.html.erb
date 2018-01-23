@@ -9,9 +9,68 @@
   </head>
 
   <body>
-    
-  	<div class="panel-heading"><h3><font color="white">Project Management System</font></h3> </div>
+
+    <% if current_user %>
+          
+  <div class="panel">
+    <div class="panel-heading row">
+        <div class="col-lg-8"><font color="white" size="5">Project Management System</font></div>  
+        <div class="col-lg-1 pull-right">
+          <font color="white">
+            <span class="glyphicon glyphicon-log-out"></span>
+            <a id="al" href="/users/sign_out" data-method="delete" rel="nofollow">LogOut</a>
+          </font>
+        </div>
+         <div class="col-lg-1 pull-right">
+          <font color="white">
+            <span class="glyphicon glyphicon-home"></span>
+           <a id="al" href="/usershome">Home</a>
+          </font>
+          </div>
+          <div class="col-lg-1 pull-right">
+          <font color="white">
+           <a id="al" href="/taskslist">Tasks List</a>
+          </font>
+          </div>
+           <div class="col-lg-1 pull-right">
+          <font color="white">
+           <a id="al" href="/projectslist">Projects List</a>
+          </font>
+          </div>            
+    </div>
+</div>
    
+         <% else %>
+         <div class="panel">
+    <div class="panel-heading row">
+        <div class="col-lg-9"><font color="white" size="5">Project Management System</font></div>  
+        <div class="col-lg-1 pull-right">
+          <font color="white">
+            <span class="glyphicon glyphicon-home"></span>
+           <a id="al" href="/">Home</a>
+          </font>
+          </div>
+         <div class="col-lg-1 pull-right">
+          <font color="white">
+            <span class="glyphicon glyphicon-log-in"></span>
+           <a id="al" href="/users/sign_in">LogIn</a>
+          </font>
+          </div> 
+          <div class="col-lg-1 pull-right">
+          <font color="white">
+            <span class="glyphicon glyphicon-registration-mark"></span>
+           <a id="al" href="/users/sign_up">SignUp</a>
+          </font>
+          </div>               
+    </div>
+  </div>
+
+    <% end %>
+      <div id="notice">
+         <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+      <% end %>
+  </div>
     <%= yield %>
     <div class="panel-footer">© Copyright 2017 Project Management Services Pvt Ltd. - All Rights reserved</div>
   </body>

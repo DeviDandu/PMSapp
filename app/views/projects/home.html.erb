@@ -1,28 +1,18 @@
 
-
-<nav class="navbar navbar-default">
-   <ul class="nav navbar-nav">
-      <li><a href="/projects/new/<%= current_user.id %>">New Project</a></li> 
-      <% if current_user %>
-      <li><a href="/users/sign_out" data-method="delete" rel="nofollow">LogOut</a></li> 
-    <% end %>       
-    </ul>
-  </div>
-</nav>
 <div class="container">
-<br>
-
+  <br />
 <font color="#2F4F4F"><h3>Welcome <%= current_user.name %></h3></font><br />
+Create <%= link_to "New Project", "/projects/new/#{current_user.id}" ,class: "btn btn-info btn-xs"%></td><br /><br />
 <font color="#569AAB"><h4>Available Projects</h4></font>
 <div class="col-md-7">
-<table class="table">
+<table class="table table-striped">
   <thead>
     <tr>
       <th><font color="#337ab7">Name</th></font>
       <th><font color="#337ab7">Code</th></font>
       <th><font color="#337ab7">Start Date</th></font>
       <th><font color="#337ab7">End Date</th></font>
-       <th><font color="#337ab7">Status</th></font>
+  
 
       <th></th>
     </tr>
@@ -35,9 +25,9 @@
         <td><%= project.code %></td>
         <td><%= project.startdate %></td>
         <td><%= project.enddate %></td>
-        <td><%= project.status %></td>
-         <td><%= link_to "Details", "/projectdetails/#{project.id}", class: "btn btn-info btn-xs" %></td>
+ 
           <td><%= link_to "Edit", "/editproject/#{project.id}", class: "btn btn-info btn-xs" %></td>
+           <td><%= link_to "ProjectINFO", "/projectdetails/#{project.id}", class: "btn btn-info btn-xs" %></td>
       </tr>
     <% end %>
   </tbody>

@@ -11,14 +11,15 @@ class AttachmentsController < ApplicationController
      @project=Project.find(params[:project_id])
      @project= @project.attachments.new(attach_params)
    	 @project.save
-      render "projects/home.html"
+      redirect_to "/projectdetails/#{params[:project_id]}"
     end
   
 
   def destroy
+    @project=Project.find(params[:project_id])
     @attachment=Attachment.find(params[:id])
     @attachment.destroy
-    render "projects/home.html"
+    redirect_to "/projectdetails/#{@project.id}"
   end
 
 private

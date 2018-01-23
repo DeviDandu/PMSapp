@@ -1,8 +1,10 @@
+
 <div class="container">
- <h3><font color="blue">New Task</font></h3><br>
+  <br /><br />
+ <h3><font color="#569AAB">New Task</font></h3><br>
   <div class="row">
 <div class="col-lg-6"> 
-<%= form_with(model: @task, local: true,url: {action: "createtask"}) do |form| %>
+<%= bootstrap_form_for(@task, local: true,url: {action: "createtask"}) do |form| %>
   <% if @task.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
@@ -15,34 +17,27 @@
     </div>
   <% end %>
  <%= hidden_field_tag(:project_id,value = @project.id) %>
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :task_name %>
+  <div class="form-group">
+    <%= form.text_field :name,class: 'form-control input-sm' %>
   </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description, id: :task_description %>
+  <div class="form-group">
+    <%= form.text_field :description,class: 'form-control input-sm' %>
   </div>
 
-  <div class="field">
-    <%= form.label :startdate %>
-    <%= form.date_select :startdate, id: :task_startdate %>
+  <div class="form-group">
+    <%= form.date_select :startdate,class: 'form-control input-sm' %>
   </div>
 
-  <div class="field">
-    <%= form.label :enddate %>
-    <%= form.date_select :enddate, id: :task_enddate %>
+  <div class="form-group">
+    <%= form.date_select :enddate,class: 'form-control input-sm' %>
   </div>
 
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.text_field :status, id: :task_status %>
-  </div>
-
+ <div class="form-group">
   <div class="actions">
     <%= form.submit %>
   </div>
+</div>
 <% end %>
 </div>
 </div>

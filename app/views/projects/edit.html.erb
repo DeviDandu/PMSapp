@@ -1,8 +1,10 @@
+
 <div class="container">
- <h3><font color="blue">New Project</font></h3><br>
+  <br /><br />
+ <h3><font color="#569AAB">Edit Project</font></h3><br>
   <div class="row">
 <div class="col-lg-6"> 
-<%= form_with(model: @project, local: true, url: {action: "updateproject"} ,:html => { :multipart => true }) do |form| %>
+<%= bootstrap_form_for(@project, local: true, url: {action: "updateproject"} ,:html => { :multipart => true }) do |form| %>
   <% if @project.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
@@ -15,35 +17,27 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :project_name %>
+  <div class="form-group">
+    <%= form.text_field :name,class: 'form-control input-sm' %>
   </div>
 
-  <div class="field">
-    <%= form.label :code %>
-    <%= form.text_field :code, id: :project_code %>
+  <div class="form-group">
+    <%= form.text_field :code,class: 'form-control input-sm' %>
   </div>
 
-  <div class="field">
-    <%= form.label :startdate %>
-    <%= form.date_select :startdate, id: :project_startdate %>
+  <div class="form-group">
+    <%= form.date_select :startdate,class: 'form-control input-sm' %>
   </div>
 
-  <div class="field">
-    <%= form.label :enddate %>
-    <%= form.date_select :enddate, id: :project_enddate %>
+  <div class="form-group">
+    <%= form.date_select :enddate,class: 'form-control input-sm' %>
   </div>
 
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.text_field :status, id: :project_status %>
-  </div>
-
-
+<div class="form-group">
   <div class="actions">
     <%= form.submit %>
   </div>
+</div>
 <% end %>
 </div>
 </div>
