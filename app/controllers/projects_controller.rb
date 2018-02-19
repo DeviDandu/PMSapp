@@ -6,6 +6,8 @@ class ProjectsController < ApplicationController
 
    def home
     @projects=current_user.projects
+    @credits=current_user.projects.sum(:credits) 
+    puts "-------------#{@credits}"
   end
   
   def info

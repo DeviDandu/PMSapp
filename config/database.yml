@@ -81,5 +81,4 @@ test:
 production:
   <<: *default
   database: PMSapp_production
-  username: PMSapp
-  password: <%= ENV['PMSAPP_DATABASE_PASSWORD'] %>
+  

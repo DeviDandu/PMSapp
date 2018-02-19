@@ -1,13 +1,19 @@
 
+
 <div class="container">
   <br />
  <h3><font color="#569AAB">SignUp</font></h3><br>
   <div class="row">
 <div class="col-lg-6"> 
 
+
 <%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
+   <% ip=request.remote_ip %>
+   <% puts "----------#{ip}" %>
+  
+  
   <div class="form-group">
     <%= f.text_field :name, autofocus: true,class: 'form-control input-sm' %>
   </div>
@@ -31,10 +37,19 @@
   <%= f.select :organisation, Organisation.all.collect {|org| [org.name]}, {prompt: 'Select Organisation'} %>
   </div><br />
 
+  <div class="form-group">
+    <%= f.hidden_field :current_sign_in_ip, :value => "#{ip}" %>
+  </div>
+
+ 
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
 <% end %>
 </div>
 </div>
+<%= render "users/shared/links" %>
 <div>
+
+
+

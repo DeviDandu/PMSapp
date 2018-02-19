@@ -3,9 +3,9 @@
   <head>
     <title>PMSapp</title>
     <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    
   </head>
 
   <body>
@@ -14,19 +14,22 @@
           
   <div class="panel">
     <div class="panel-heading row">
-        <div class="col-lg-8"><font color="white" size="5">Project Management System</font></div>  
+        <div class="col-lg-7"><font color="white" size="5">Project Management System</font></div>  
         <div class="col-lg-1 pull-right">
           <font color="white">
-            <span class="glyphicon glyphicon-log-out"></span>
             <a id="al" href="/users/sign_out" data-method="delete" rel="nofollow">LogOut</a>
           </font>
         </div>
          <div class="col-lg-1 pull-right">
           <font color="white">
-            <span class="glyphicon glyphicon-home"></span>
            <a id="al" href="/usershome">Home</a>
           </font>
           </div>
+           <div class="col-lg-1 pull-right">
+          <font color="white">
+           <a id="al" href="/users/displayqr">Privacy</a>
+          </font>
+          </div>   
           <div class="col-lg-1 pull-right">
           <font color="white">
            <a id="al" href="/taskslist">Tasks List</a>
@@ -36,7 +39,8 @@
           <font color="white">
            <a id="al" href="/projectslist">Projects List</a>
           </font>
-          </div>            
+          </div>  
+                    
     </div>
 </div>
    

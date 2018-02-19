@@ -1,4 +1,6 @@
+
 RailsAdmin.config do |config|
+require Rails.root.join('lib', 'rails_admin', 'custom_actions.rb')
 
   ### Popular gems integration
 
@@ -7,8 +9,6 @@ RailsAdmin.config do |config|
   warden.authenticate! scope: :admin
   end
   config.current_user_method(&:current_admin)
-
- 
 
   ## == Cancan ==
   # config.authorize_with :cancan
@@ -35,9 +35,12 @@ RailsAdmin.config do |config|
     edit
     delete
     show_in_app
-
-    ## With an audit adapter, you can add:
-    # history_index
-    # history_show
+   
+    collection do
+      visible do
+        bindings[:abstract_model].model.to_s == "Project"
+      end
+    end
+  
   end
 end

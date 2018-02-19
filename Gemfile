@@ -28,16 +28,23 @@ gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-gem 'bootstrap-sass'
+ gem 'bcrypt', '~> 3.1.7'
+
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'jquery-validation-rails'
+gem 'bootstrap-sass'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'rails_admin'
 gem 'devise'
+gem 'devise_google_authenticator', '0.3.15', :path => 'lib/gems/devise_google_authenticator-0.3.15'
+gem 'devise-two-factor'
+gem 'rotp'
 gem 'paperclip'
+gem 'freegeoip-ruby'
+
 gem 'bootstrap_forms'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

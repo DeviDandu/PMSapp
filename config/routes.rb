@@ -11,14 +11,12 @@ Rails.application.routes.draw do
 
   resources :organisations
   
- devise_for :users
+ devise_for :users, controllers: { confirmations: 'users/confirmations' }
  
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
- 
 
   get 'admins/sign_in' => 'admins#login'
-
 	get 'usershome' => 'projects#home', as: :user_root
 	
   	
@@ -26,6 +24,7 @@ Rails.application.routes.draw do
     post 'createproject/:user_id' => 'projects#create'
     get 'editproject/:id' => 'projects#edit'
     patch 'updateproject/:id' => 'projects#updateproject'
+    get 'deleteproject/:id' => 'projects#destroy'
     get 'projectslist' => 'projects#index'
   	resources :projects
     get 'projectdetails/:project_id' => 'tasks#home'

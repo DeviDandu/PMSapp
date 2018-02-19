@@ -1,4 +1,21 @@
+<% require 'freegeoip' %>
+
 <p>Welcome <%= @email %>!</p>
+
+IP Address : <%= @user.current_sign_in_ip %> <br/>
+ 
+   <% ip = @user.current_sign_in_ip.to_s %>
+ 
+   <% puts "----------#{ip}" %>
+   <% location=Freegeoip.get(ip) %>
+   <% country=location.country_name %>
+   <% state= location.region_name %>
+   <% city= location.city %>
+
+	Location<br/>
+	Counrty: <%= country %><br/>
+	State: <%= state %><br/>
+	City: <%= city %>
 
 <p>You can confirm your account email through the link below:</p>
 

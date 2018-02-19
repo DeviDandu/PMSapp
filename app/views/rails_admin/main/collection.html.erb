@@ -1,0 +1,29 @@
+
+<div class="container">
+  <br />
+<div class="col-md-7">
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><font color="#337ab7">Name</th></font>
+      <th><font color="#337ab7">Code</th></font>
+       <th><font color="#337ab7">Credits</th></font>
+      <th><font color="#337ab7">Start Date</th></font>
+      <th><font color="#337ab7">End Date</th></font>
+    </tr>
+  </thead>
+
+  <tbody>
+ <% @projects.each do |project| %>
+      <tr>      
+        <td><%= project.name %></td>
+        <td><%= project.code %></td>
+         <td><%= project.credits %></td>
+        <td><%= project.startdate %></td>
+        <td><%= project.enddate %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+</div>

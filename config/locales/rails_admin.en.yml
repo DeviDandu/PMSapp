@@ -1,0 +1,7 @@
+en:
+  admin:
+    actions:
+      collection:
+        title: "CustomAction"
+        menu: "CustomAction"
+        breadcrumb: "CustomAction"

@@ -3,13 +3,14 @@
   <br />
 <font color="#2F4F4F"><h3>Welcome <%= current_user.name %></h3></font><br />
 Create <%= link_to "New Project", "/projects/new/#{current_user.id}" ,class: "btn btn-info btn-xs"%></td><br /><br />
-<font color="#569AAB"><h4>Available Projects</h4></font>
+<font color="#569AAB"><h4>Available Projects : <%= current_user.projects.count %></h4></font><br />
 <div class="col-md-7">
 <table class="table table-striped">
   <thead>
     <tr>
       <th><font color="#337ab7">Name</th></font>
       <th><font color="#337ab7">Code</th></font>
+       <th><font color="#337ab7">Credits</th></font>
       <th><font color="#337ab7">Start Date</th></font>
       <th><font color="#337ab7">End Date</th></font>
   
@@ -23,15 +24,20 @@ Create <%= link_to "New Project", "/projects/new/#{current_user.id}" ,class: "bt
       <tr>      
         <td><%= project.name %></td>
         <td><%= project.code %></td>
+         <td><%= project.credits %></td>
         <td><%= project.startdate %></td>
         <td><%= project.enddate %></td>
+
  
           <td><%= link_to "Edit", "/editproject/#{project.id}", class: "btn btn-info btn-xs" %></td>
+          <td><%= link_to "Delete", "/deleteproject/#{project.id}", class: "btn btn-info btn-xs" %></td>
            <td><%= link_to "ProjectINFO", "/projectdetails/#{project.id}", class: "btn btn-info btn-xs" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-</div>
+<br />
 
+<font color="#2F4F4F"><h4>Credit Points : <%= @credits %> </h4></font><br />
+</div>
 </div>

@@ -18,6 +18,7 @@
   <% end %>
 
       <%= hidden_field_tag(:user_id,value = @user.id) %>
+      <%= hidden_field_tag(:status,value = "InActive") %>
       <%= puts "in form #{@user.id}" %>
 
   <div class="form-group">
@@ -41,7 +42,12 @@
       <%= attachment_fields.file_field :file %>
       <% end %>
    </div>
-   
+    <div class="actions">
+    <%= form.hidden_field :status, :value => "InActive" %>
+  </div>
+  <div class="actions">
+    <%= form.hidden_field :credits, :value => 0 %>
+  </div>
   <div class="actions">
     <%= form.submit %>
   </div>

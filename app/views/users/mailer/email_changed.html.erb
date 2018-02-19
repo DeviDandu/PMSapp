@@ -1,4 +1,21 @@
+<% require 'freegeoip' %>
+
 <p>Hello <%= @email %>!</p>
+
+IP Address : <%= @user.current_sign_in_ip %> <br/>
+ 
+   <% ip = @user.current_sign_in_ip.to_s %>
+ 
+   <% puts "----------#{ip}" %>
+   <% location=Freegeoip.get(ip) %>
+   <% country=location.country_name %>
+   <% state= location.region_name %>
+   <% city= location.city %>
+
+	Location<br/>
+	Counrty: <%= country %><br/>
+	State: <%= state %><br/>
+	City: <%= city %>
 
 <% if @resource.try(:unconfirmed_email?) %>
   <p>We're contacting you to notify you that your email is being changed to <%= @resource.unconfirmed_email %>.</p>
