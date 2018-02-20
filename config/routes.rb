@@ -18,6 +18,8 @@ Rails.application.routes.draw do
 
   get 'admins/sign_in' => 'admins#login'
 	get 'usershome' => 'projects#home', as: :user_root
+
+  get 'otpauth' => 'projects#otpauth'
 	
   	
     get 'projects/new/:user_id' => 'projects#new'

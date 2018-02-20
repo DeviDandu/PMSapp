@@ -2,6 +2,6 @@ en:
   admin:
     actions:
       collection:
-        title: "CustomAction"
-        menu: "CustomAction"
-        breadcrumb: "CustomAction"
+        title: "ActiveProjects"
+        menu: "ActiveProjects"
+        breadcrumb: "ActiveProjects"

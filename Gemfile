@@ -42,6 +42,7 @@ gem 'devise'
 gem 'devise_google_authenticator', '0.3.15', :path => 'lib/gems/devise_google_authenticator-0.3.15'
 gem 'devise-two-factor'
 gem 'rotp'
+gem 'active_model_otp'
 gem 'paperclip'
 gem 'freegeoip-ruby'
 

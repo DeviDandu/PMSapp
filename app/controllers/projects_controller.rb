@@ -4,15 +4,19 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
 
+  def otpauth
+    puts "------in controller----"
+    redirect_to '/usershome'
+  end
+
+
    def home
     @projects=current_user.projects
     @credits=current_user.projects.sum(:credits) 
-    puts "-------------#{@credits}"
   end
   
   def info
     @project=Project.find(params[:project_id])
-    puts 'id is in #{params[:project_id]}'
     @tasks = Task.all
   end
 
@@ -25,7 +29,6 @@ class ProjectsController < ApplicationController
   # GET /projects/new
   def new
     @user=User.find(params[:user_id])
-    puts "id is #{@user.id}"
     @project=@user.projects.new(params[:project])
     3.times { @project.attachments.build }
   end
