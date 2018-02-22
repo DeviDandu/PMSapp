@@ -13,7 +13,7 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
-//= require bootstrap/modal
+//= require bootstrap
 //= require rails-ujs
 //= require turbolinks
 //= require_self

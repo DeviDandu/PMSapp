@@ -1,5 +1,6 @@
 class User < ApplicationRecord
 	attr_accessor :gauth_token
+   has_one_time_password
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :google_authenticatable, :database_authenticatable, :registerable,
@@ -16,4 +17,5 @@ class User < ApplicationRecord
   def send_welcome_email
     UserMailer.welcome_email(self).deliver_now if self.confirmed_at_changed?
   end
+
 end

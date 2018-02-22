@@ -1,7 +1,11 @@
+<script>
+  $('#check_otp').click(function(){
+    $('#code').val($('#project_code').val());
+  });
+</script>
+
 
 <div class="container">
-
- 
   <br /><br />
  <h3><font color="#569AAB">New Project</font></h3><br>
   <div class="row">
@@ -51,7 +55,7 @@
     <%= form.hidden_field :credits, :value => 0 %>
   </div>
   <div class="actions">
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#otpAuth">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#otpAuth" id="check_otp">
     Create
   </button>
   </div>
@@ -59,7 +63,6 @@
   </div>
   </div>
   <div>
-
 
 
 
@@ -81,11 +84,10 @@
             
             <!-- Modal Body -->
             <div class="modal-body">       
-                <form role="form" action="/otpauth">
+                <form role="form" action="/otpauth" >
                   <div class="form-group">
                     <label>Enter OTP</label>
-                      <input type="text-field" class="form-control"
-                      id="otp" />
+                      <input id="code" name="code" type="text" value="{{ request.form.code }}" />
                   </div>
                   <button type="submit" class="btn btn-default">Submit</button>
                 </form>

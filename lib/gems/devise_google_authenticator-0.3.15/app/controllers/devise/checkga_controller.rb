@@ -26,7 +26,7 @@ class Devise::CheckgaController < Devise::SessionsController
         if resource_name.to_s == "admin"
          respond_with resource, :location => "/admin"
       else
-         respond_with resource, :location => after_sign_in_path_for(resource)
+         respond_with resource, :location => "/usershome"
        end
 
 

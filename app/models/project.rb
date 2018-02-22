@@ -1,5 +1,5 @@
 class Project < ApplicationRecord
-  has_one_time_password
+  
 	has_many :tasks, :dependent => :destroy
 	belongs_to :user
 	has_many :attachments, :dependent => :destroy
@@ -12,7 +12,7 @@ class Project < ApplicationRecord
  
   after_update :check_for_status
   before_create :check_for_otp
- 
+
 
   def check_for_status
     self.status=status
@@ -23,8 +23,8 @@ class Project < ApplicationRecord
     end
   end
 
-  def check_for_otp
-    otp=self.otp_code.to_s
+   def check_for_otp
+    otp=self.user.otp_code.to_s  
     puts "-------code is --------#{otp}"
   end
 
