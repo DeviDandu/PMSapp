@@ -23,7 +23,7 @@ Rails.application.routes.draw do
 	
   	
     get 'projects/new/:user_id' => 'projects#new'
-    post 'createproject/:user_id' => 'projects#create'
+    post 'createproject/:userid' => 'projects#create'
     get 'editproject/:id' => 'projects#edit'
     patch 'updateproject/:id' => 'projects#updateproject'
     get 'deleteproject/:id' => 'projects#destroy'

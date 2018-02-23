@@ -4,12 +4,6 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
 
-  def otpauth
-    puts "------in controller----"
-    redirect_to '/usershome'
-  end
-
-
    def home
     @projects=current_user.projects
     @credits=current_user.projects.sum(:credits) 
@@ -29,6 +23,8 @@ class ProjectsController < ApplicationController
   # GET /projects/new
   def new
     @user=User.find(params[:user_id])
+    otp=@user.otp_code
+    puts "-------db otp----#{otp}"
     @project=@user.projects.new(params[:project])
     3.times { @project.attachments.build }
   end
@@ -42,22 +38,19 @@ class ProjectsController < ApplicationController
   # POST /projects
   # POST /projects.json
   def create
-    puts "id is params[:user_id]"
     @user=User.find(params[:user_id])
-
     @project=@user.projects.new(project_params)
-    @project.save
+     otp_code=params[:otp]
     
-
-    respond_to do |format|
-      if @project.save
-        format.html { redirect_to '/usershome', notice: 'Project was successfully created.' }
-        format.json { render :home, status: :created, location: @project }
-      else
-        format.html { render :new }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
-      end
+     if @user.authenticate_otp(otp_code, drift: 120 ) == true
+      @project.save
+      flash[:notice]="Project Succesfully Created"
+      redirect_to "/usershome"
+    else
+      flash[:error]="Invalid OTP"
+      redirect_to "/usershome"
     end
+    
   end
 
   # PATCH/PUT /projects/1
@@ -95,6 +88,6 @@ class ProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:name, :code, :startdate, :enddate, :status, attachments_attributes: [:file])
+      params.require(:project).permit(:name, :code, :startdate, :enddate, :status, :credits, attachments_attributes: [:file])
     end
 end

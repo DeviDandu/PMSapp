@@ -14,6 +14,7 @@
 //= require jquery-ui
 //= require jquery_ujs
 //= require bootstrap
+//= require bootstrap-datepicker
 //= require rails-ujs
 //= require turbolinks
 //= require_self

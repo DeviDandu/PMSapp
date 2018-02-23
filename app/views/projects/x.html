@@ -1,12 +1,12 @@
 <script>
   $('#check_otp').click(function(){
     $('#user_id').val($('#userid').val());
-    $('#project_code').val($('#code').val());
-    $('#project_name').val($('#name').val());
-    $('#project_startdate').val($('#startdate').val());
-    $('#project_enddate').val($('#enddate').val());
-    $('#project_status').val($('#status').val());
-    $('#project_credits').val($('#credits').val());
+    $('#code').val($('#project_code').val());
+    $('#name').val($('#project_name').val());
+    $('#startdate').val($('#project_startdate').val());
+    $('#enddate').val($('#project_enddate').val());
+    $('#status').val($('#project_status').val());
+    $('#credits').val($('#project_credits').val());
   });
 </script>
       
@@ -33,33 +33,29 @@
       <%= hidden_field_tag(:userid,value = @user.id) %>
       
     
-  <div class="form-group">
-    <label>Name</label><br />
-    <input type="text" class="form-control input-sm" id="name">
-  </div>
- 
 
   <div class="form-group">
-    <label>Code</label><br />
-    <input type="text" class="form-control input-sm" id="code" >
+    <%= form.text_field :name,class: 'form-control input-sm', data: {target: "#otpAuth"} %>
   </div>
 
   <div class="form-group">
-    <label>Start Date</label><br />
-    <input type="text" class="form-control input-sm" id="startdate" >
+    <%= form.text_field :code, class: 'form-control input-sm', data: {target: "#otpAuth"} %>
   </div>
 
   <div class="form-group">
-   <label>End Date</label><br />
-    <input type="text" class="form-control input-sm" id="enddate" >
+    <%= form.date_select :startdate, class: 'form-control input-sm',data: {target: "#otpAuth"} %>
+  </div>
+
+  <div class="form-group">
+    <%= form.date_select :enddate, class: 'form-control input-sm',data: {target: "#otpAuth"} %>
   </div>
 
    <div class="actions">
-    <input type="hidden" id="status" value="InActive" >
+    <%= form.hidden_field :status, :value => "InActive",data: {target: "#otpAuth"} %>
   </div>
 
   <div class="actions">
-    <input type="hidden" id="credits" value="0" data-target="#otpAuth" >
+    <%= form.hidden_field :credits, :value => 0,data: {target: "#otpAuth"} %>
   </div>
 
   <div class="actions">
@@ -95,15 +91,12 @@
                <%= bootstrap_form_for(@project, local: true,:html => { :multipart => true }) do |form| %>
 
                   <input type="hidden" id="user_id" name="user_id" value="{{ request.form.user_id }}" />
-
-                  <%= form.hidden_field :name, :value => "{{ request.form.name }}" %>
-                  <%= form.hidden_field :code, :value => "{{ request.form.code }}" %>
-                  <%= form.hidden_field :startdate, :value => "{{ request.form.startdate }}" %>
-                  <%= form.hidden_field :enddate, :value => "{{ request.form.enddate }}" %>
-                  <%= form.hidden_field :status, :value => "{{ request.form.status }}" %>
-                  <%= form.hidden_field :credits, :value => "{{ request.form.credits }}" %>
-                  
-            
+                  <input type="hidden" id="name" name="name" value="{{ request.form.name }}" />
+                   <input type="hidden" id="code" name="code" value="{{ request.form.code }}" />
+                  <input type="hidden" id="startdate" name="startdate" value="{{ request.form.startdate }}" />
+                  <input type="hidden" id="enddate" name="enddate" value="{{ request.form.enddate }}" />
+                  <input type="hidden" id="status" name="status" value="{{ request.form.status }}" />
+                  <input type="hidden" id="credits" name="credits" value="{{ request.form.credits }}" />
                   <div class="form-group">
                     <label>Enter OTP</label>
                       <input id="otp" name="otp" type="text"  />

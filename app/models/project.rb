@@ -11,7 +11,7 @@ class Project < ApplicationRecord
   validates :enddate,presence: true
  
   after_update :check_for_status
-  before_create :check_for_otp
+  
 
 
   def check_for_status
@@ -23,10 +23,6 @@ class Project < ApplicationRecord
     end
   end
 
-   def check_for_otp
-    otp=self.user.otp_code.to_s  
-    puts "-------code is --------#{otp}"
-  end
 
    rails_admin do
    
