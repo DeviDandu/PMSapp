@@ -40,6 +40,14 @@ class ProjectsController < ApplicationController
   def create
     @user=User.find(params[:user_id])
     @project=@user.projects.new(project_params)
+
+    if params[:resend_otp]
+      puts "---workings"
+       otp=@user.otp_code
+        puts "-------RESEND db otp----#{otp}"
+        flash[:notice]="New OTP Sent"
+        
+    end
      otp_code=params[:otp]
     
      if @user.authenticate_otp(otp_code, drift: 120 ) == true
@@ -47,8 +55,7 @@ class ProjectsController < ApplicationController
       flash[:notice]="Project Succesfully Created"
       redirect_to "/usershome"
     else
-      flash[:error]="Invalid OTP"
-      redirect_to "/usershome"
+       render js: "alert('info')"
     end
     
   end

@@ -1,4 +1,6 @@
 <script>
+
+
   $('#check_otp').click(function(){
     $('#user_id').val($('#userid').val());
     $('#project_code').val($('#code').val());
@@ -8,6 +10,7 @@
     $('#project_status').val($('#status').val());
     $('#project_credits').val($('#credits').val());
   });
+
 </script>
       
 
@@ -17,7 +20,7 @@
  <h3><font color="#569AAB">New Project</font></h3><br>
   <div class="row">
 <div class="col-lg-6"> 
-<%= bootstrap_form_for(@project, local: true,:html => { :multipart => true }) do |form| %>
+<%= bootstrap_form_for(@project,:html => {:id => 'projectform' }) do |form| %>
   <% if @project.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
@@ -63,7 +66,7 @@
   </div>
 
   <div class="actions">
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#otpAuth" id="check_otp">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#otpAuth" id="check_otp" data-backdrop="static">
     Create
   </button>
   </div>
@@ -91,8 +94,8 @@
             </div>
             
             <!-- Modal Body -->
-            <div class="modal-body">       
-               <%= bootstrap_form_for(@project, local: true,:html => { :multipart => true }) do |form| %>
+            <div class="modal-body">    
+               <%= bootstrap_form_for(@project, local: true,:html => { :multipart => true }, remote:  true ) do |form| %>
 
                   <input type="hidden" id="user_id" name="user_id" value="{{ request.form.user_id }}" />
 
@@ -106,9 +109,10 @@
             
                   <div class="form-group">
                     <label>Enter OTP</label>
-                      <input id="otp" name="otp" type="text"  />
+                      <input id="otp" name="otp" type="text" />
                   </div>
-                  <%= form.submit %>
+                  <%= form.submit "Submit",name: "submit" %>
+                  <%= form.submit "Resend OTP",name: "resend_otp" %>
                 <% end %>
             </div>            
          
